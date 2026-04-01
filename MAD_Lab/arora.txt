@@ -1,0 +1,226 @@
+🧩 MENU XML (menu_main.xml)
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_refresh"
+        android:title="Refresh" />
+
+    <item
+        android:id="@+id/menu_info"
+        android:title="Info" />
+</menu>
+
+
+🧩 TOOLBAR XML
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+
+
+
+🚀 MAIN ACTIVITY (ALL FEATURES)
+package com.example.myapp;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.*;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import java.util.ArrayList;
+import java.util.Calendar;
+
+public class MainActivity extends AppCompatActivity {
+
+    EditText editText;
+    Spinner spinner;
+    DatePicker datePicker;
+    TimePicker timePicker;
+    ListView listView;
+
+    DBHelper myDb;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // ================= UI =================
+        editText = findViewById(R.id.editText);
+        spinner = findViewById(R.id.spinner);
+        datePicker = findViewById(R.id.datePicker);
+        timePicker = findViewById(R.id.timePicker);
+        listView = findViewById(R.id.listView);
+
+        // ================= TOOLBAR =================
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // ================= SPINNER =================
+        String[] items = {"Region A", "Region B", "Region C"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_dropdown_item,
+                items
+        );
+
+        spinner.setAdapter(adapter);
+
+        // ================= DATE PICKER =================
+        Calendar calendar = Calendar.getInstance();
+        long current = calendar.getTimeInMillis();
+
+        // Min = tomorrow
+        datePicker.setMinDate(current + (24 * 60 * 60 * 1000));
+
+        // Max = 20 days ahead
+        datePicker.setMaxDate(current + (20L * 24 * 60 * 60 * 1000));
+
+        // ================= TIME PICKER =================
+        timePicker.setOnTimeChangedListener((view, hour, minute) -> {
+
+            if (hour < 9 || hour > 18) {
+                Toast.makeText(this,
+                        "Select time between 9 AM and 6 PM",
+                        Toast.LENGTH_SHORT).show();
+
+                // Reset to valid time
+                timePicker.setHour(9);
+                timePicker.setMinute(0);
+            }
+        });
+
+        // ================= DATABASE =================
+        myDb = new DBHelper(this);
+
+        // ================= LOAD DATA INTO LISTVIEW =================
+        ArrayList<String> list = new ArrayList<>();
+
+        Cursor res = myDb.getData();
+
+        if (res.getCount() == 0) {
+            Toast.makeText(this, "No Data", Toast.LENGTH_SHORT).show();
+        } else {
+            while (res.moveToNext()) {
+                list.add(
+                        "ID: " + res.getString(0) + "\n" +
+                        "NAME: " + res.getString(1)
+                );
+            }
+        }
+
+        listView.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                list
+        ));
+
+        // ================= LIST CLICK =================
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+
+            Cursor cursor = myDb.getData();
+            cursor.moveToPosition(position);
+
+            String idVal = cursor.getString(0);
+            String name = cursor.getString(1);
+
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putExtra("ID", idVal);
+            intent.putExtra("NAME", name);
+            startActivity(intent);
+        });
+    }
+
+    // ================= MENU =================
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (item.getItemId() == R.id.menu_refresh) {
+
+            // Clear inputs
+            editText.setText("");
+            spinner.setSelection(0);
+
+            // Reset calendar
+            Calendar calendar = Calendar.getInstance();
+            long current = calendar.getTimeInMillis();
+
+            datePicker.setMinDate(current + (24 * 60 * 60 * 1000));
+            datePicker.setMaxDate(current + (20L * 24 * 60 * 60 * 1000));
+
+            // Set tomorrow date
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+            datePicker.updateDate(
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+            );
+
+            // Reset time
+            timePicker.setHour(9);
+            timePicker.setMinute(0);
+
+            Toast.makeText(this, "Cleared & Refreshed", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+
+        else if (item.getItemId() == R.id.menu_info) {
+            Intent intent = new Intent(this, SecondActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+
+
+
+
+🚀 DetailActivity.java
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class DetailActivity extends AppCompatActivity {
+
+    TextView tvData;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_detail);
+
+        tvData = findViewById(R.id.tvData);
+
+        Intent intent = getIntent();
+
+        String id = intent.getStringExtra("ID");
+        String name = intent.getStringExtra("NAME");
+
+        tvData.setText("ID: " + id + "\nName: " + name);
+    }
+}
+
+
+
+🚀 XML (activity_detail.xml)
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvData"
+        android:textSize="18sp"/>
+</LinearLayout>
