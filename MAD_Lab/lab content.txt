@@ -1,0 +1,286 @@
+🔴 LAB 1 — Basics of Android
+
+
+Questions
+
+Create an Android app to:
+
+Display text
+
+Apply formatting (justify, color, fonts, etc.)
+
+Modify the “Hello World” text in XML
+
+🧠 Topics Used
+
+Android Studio basics
+
+XML layout editing
+
+TextView properties
+
+UI styling (colors, fonts)
+
+Project structure basics
+
+🔴 LAB 2 — Activity & Layouts
+
+📄 (Page 16–18)
+
+🧪 Questions
+
+Demonstrate activity lifecycle
+
+onCreate(), onStart(), onResume()
+
+Build a Calculator App
+
++, −, ×, ÷
+
+Result format: num1 operator num2 = result
+
+Back navigation between activities
+
+Create UI using:
+
+LinearLayout
+
+RelativeLayout
+
+Open a URL entered by user
+
+🧠 Topics Used
+
+Activity lifecycle methods
+
+Intents (navigation)
+
+Layouts (Linear, Relative)
+
+Event handling
+
+Implicit intent (open browser)
+
+🔴 LAB 3 — Activity + Advanced Layouts
+
+📄 (Page 22–23)
+
+🧪 Questions
+
+Implement:
+
+ListView
+
+GridView
+
+TabLayout
+
+TableLayout
+
+Display sports list → show selected sport
+
+News app with tabs:
+
+Top Stories
+
+Sports
+
+Entertainment
+
+🧠 Topics Used
+
+Adapters (ArrayAdapter)
+
+ListView & GridView
+
+TabLayout + ViewPager
+
+TableLayout
+
+Event listeners
+
+UI navigation
+
+🔴 LAB 4 — Input Controls
+
+📄 (Page 28–29)
+
+🧪 Questions
+
+Test app:
+
+Button + ToggleButton
+
+Show custom Toast with images
+
+Android versions app:
+
+Buttons → show version + icon
+
+Toggle mode app:
+
+Wi-Fi / Mobile Data
+
+Change image + Toast
+
+Food Ordering App:
+
+Checkboxes for items
+
+Show selected items + total cost
+
+Lock selection after submit
+
+🧠 Topics Used
+
+Buttons, ToggleButton
+
+Toast messages
+
+CheckBox
+
+Event listeners (OnClickListener)
+
+Intents (new activity)
+
+UI state management
+
+🔴 LAB 5 — Spinners & Pickers
+
+📄 (Page 35)
+
+🧪 Questions
+
+Vehicle Parking Registration:
+
+Spinner (vehicle type)
+
+Input fields
+
+Confirmation screen
+
+Generate serial number
+
+Travel Ticket Booking:
+
+Source & destination (spinner)
+
+Date picker
+
+Toggle (one-way / round-trip)
+
+Submit + Reset
+
+Movie Ticket Booking:
+
+Spinner (movie, theatre)
+
+DatePicker + TimePicker
+
+Toggle (standard/premium)
+
+Validation (premium after 12 PM)
+
+Show seats
+
+🧠 Topics Used
+
+Spinner + ArrayAdapter
+
+Custom adapters
+
+DatePickerDialog
+
+TimePickerDialog
+
+Form validation
+
+Multi-screen apps
+
+Conditional UI logic
+
+🔴 LAB 6 — Menus
+
+📄 (Page 39)
+
+🧪 Questions
+
+XYZ Fitness Center App:
+
+Options menu:
+
+Workout Plans
+
+Trainers
+
+Membership
+
+Icon-based menu:
+
+Contact Us
+
+About Us
+
+Homepage
+
+🧠 Topics Used
+
+Options Menu
+
+Menu XML (res/menu)
+
+MenuInflater
+
+App Bar / Toolbar
+
+Menu item handling
+
+🔴 LAB 7 — Context & Popup Menu
+
+📄 (Page 46)
+
+🧪 Questions
+
+Installed Apps Manager:
+
+Long press → context menu
+
+Show:
+
+System/User app
+
+Open / uninstall / details
+
+Permissions
+
+Detailed view page
+
+“My Menu” app:
+
+Image icon → submenu
+
+Show image + Toast
+
+Digital Transformation Viewer:
+
+Popup menu options:
+
+Search keywords
+
+Highlight text
+
+Sort content
+
+🧠 Topics Used
+
+Context Menu
+
+Popup Menu
+
+ActionMode (contextual actions)
+
+Long press handling
+
+Intents (open/uninstall apps)
+
+UI filtering & sorting
