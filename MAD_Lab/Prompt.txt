@@ -1,0 +1,471 @@
+Here are 5 advanced, complex prompts similar to your original one—each designed to push full-stack Android (Java + SQLite) understanding with multi-activity flow, constraints, database design, UI components, and calendar integration.
+
+
+---
+
+🔥 Prompt 1: Appointment Booking & Customer Management System
+
+Design a multi-activity Android application in Java for managing customer appointments with scheduling constraints.
+
+Activities Required:
+
+Add Customer (Name, Email - UNIQUE, Phone)
+
+Menu Dashboard
+
+Book Appointment (DatePicker + TimePicker)
+
+View Appointments (TableLayout/ListView)
+
+
+Database Requirements:
+
+Customers table → id, name, email (TEXT UNIQUE), phone
+
+Appointments table → id, customer_id (FK), date, time, service_type
+
+Enforce FOREIGN KEY constraint and prevent duplicate bookings at same time slot
+
+
+Functional Features:
+
+Use DatePickerDialog + TimePickerDialog
+
+Spinner populated with customer names from DB
+
+Validate:
+
+No duplicate email
+
+No overlapping appointments
+
+
+Use Explicit Intents + putExtra
+
+Show summary using TableLayout
+
+
+Advanced Constraints:
+
+Disable past dates
+
+Limit bookings to working hours (9 AM–6 PM)
+
+Show Toast + AlertDialog for conflicts
+
+
+
+
+---
+
+🔥 Prompt 2: Inventory & Sales Transaction System with Expiry Tracking
+
+Build an Android app to manage inventory, customers, and transactions with expiry-aware products.
+
+Activities:
+
+Add Product (Name, Price, Expiry Date via Calendar)
+
+Add Customer
+
+Create Transaction
+
+Display Invoice
+
+
+Database Schema:
+
+Products → id, name, price, expiry_date
+
+Customers → id, name, email (UNIQUE)
+
+Transactions → id, customer_id, date
+
+Transaction_Items → transaction_id, product_id, quantity
+
+
+Key Features:
+
+Use CalendarView / DatePicker for expiry tracking
+
+Spinner pulls products/customers dynamically
+
+Prevent adding expired products to transactions
+
+Auto-calculate total price
+
+
+Advanced Logic:
+
+Highlight expired items in red
+
+Use JOIN queries for invoice display
+
+Enforce quantity > 0 constraint
+
+Normalize DB (3NF structure)
+
+
+
+
+---
+
+🔥 Prompt 3: Student Course Registration System with Timetable Conflict Detection
+
+Develop a multi-activity Android app for course registration with schedule clash detection.
+
+Activities:
+
+Add Student (Name, Email UNIQUE)
+
+Add Course (Course Name, Day, Time Slot via TimePicker)
+
+Register Course
+
+View Timetable
+
+
+Database Design:
+
+Students → id, name, email (UNIQUE)
+
+Courses → id, name, day, start_time, end_time
+
+Registrations → student_id, course_id
+
+
+Core Features:
+
+Spinner for selecting students and courses
+
+Detect timetable conflicts:
+
+Same day + overlapping time → reject
+
+
+Display timetable using TableLayout
+
+
+Advanced Requirements:
+
+Use Calendar logic for weekly schedule mapping
+
+Conflict detection algorithm (time interval overlap)
+
+Use Toast + Snackbar for validation feedback
+
+Use rawQuery with JOINs
+
+
+
+
+---
+
+🔥 Prompt 4: Expense Tracker with Monthly Analytics and Category Constraints
+
+Create an Android app for tracking expenses with calendar-based filtering and category limits.
+
+Activities:
+
+Add Expense (Amount, Category, Date)
+
+Dashboard (Monthly Summary)
+
+Category Management
+
+Detailed Report View
+
+
+Database Schema:
+
+Categories → id, name, monthly_limit
+
+Expenses → id, category_id, amount, date
+
+
+Functional Features:
+
+Use DatePicker for selecting expense date
+
+Spinner for categories
+
+Monthly filtering using Calendar
+
+
+Advanced Constraints:
+
+Warn if category exceeds monthly limit
+
+Aggregate queries:
+
+SUM(amount) GROUP BY category
+
+
+Display charts (optional enhancement)
+
+
+Validation:
+
+Amount > 0
+
+Date not in future
+
+
+
+
+---
+
+🔥 Prompt 5: Event Management System with RSVP and Capacity Constraints
+
+Design an Android app for managing events, attendees, and RSVP tracking.
+
+Activities:
+
+Create Event (Name, Date via DatePicker, Capacity)
+
+Add Attendee (Name, Email UNIQUE)
+
+RSVP Screen
+
+Event Summary Display
+
+
+Database Structure:
+
+Events → id, name, date, capacity
+
+Attendees → id, name, email (UNIQUE)
+
+RSVP → event_id, attendee_id
+
+
+Key Features:
+
+Spinner for selecting event & attendee
+
+Prevent RSVP if capacity is full
+
+Prevent duplicate RSVP entries
+
+
+Advanced Logic:
+
+Real-time capacity tracking
+
+Calendar-based filtering for upcoming events
+
+JOIN queries for attendee list per event
+
+Use ListView for display
+
+
+
+
+---
+
+⚡ If you want next level:
+
+I can also:
+
+Turn any one of these into full working code (XML + Java + SQLiteOpenHelper)
+
+Or convert into exam-ready answer (with diagrams + flow)
+
+Or make it resume-level project with GitHub structure
+
+
+Just tell me 👍
+
+Short answer: almost yes—but not completely.
+
+The 5 prompts I gave you already cover:
+
+Multi-activity navigation
+
+SQLite (CRUD + constraints + JOINs)
+
+Spinners + Adapters
+
+TableLayout/ListView
+
+Calendar (DatePicker/TimePicker)
+
+Validation + Toasts
+
+Intents + data passing
+
+
+👉 This will solve ~85–90% of typical lab/exam questions.
+
+
+---
+
+❗ What you’re still missing (important for exams)
+
+Some questions may additionally test:
+
+Update/Delete operations (full CRUD lifecycle)
+
+Search & filtering (LIKE queries)
+
+ContentProvider / data sharing (rare but possible)
+
+Background tasks / Async operations
+
+File storage or SharedPreferences
+
+Complex validation logic across multiple tables
+
+
+
+---
+
+🔥 Here are 2 MORE advanced prompts to cover those gaps:
+
+
+---
+
+🚀 Prompt 6: Library Management System with Search, Issue/Return & Fine Calculation
+
+Develop a multi-activity Android app in Java for managing a library system with book issuing, return tracking, and fine calculation.
+
+Activities:
+
+Add Book (Title, Author, ISBN UNIQUE, Copies)
+
+Add Member (Name, Email UNIQUE)
+
+Issue Book (Select Member + Book + Issue Date)
+
+Return Book (Calculate Fine)
+
+Search Books (by title/author using SearchView)
+
+
+Database Schema:
+
+Books → id, title, author, isbn (TEXT UNIQUE), copies_available
+
+Members → id, name, email (TEXT UNIQUE)
+
+Issued → id, book_id, member_id, issue_date, return_date
+
+
+Advanced Features:
+
+Use DatePicker for issue/return dates
+
+Fine calculation:
+
+₹5 per day after 7 days
+
+
+Search using:
+
+SELECT * FROM Books WHERE title LIKE '%query%'
+
+
+Constraints & Logic:
+
+Cannot issue if copies = 0
+
+Cannot issue same book twice to same user
+
+Auto-update copies on issue/return
+
+Highlight overdue books
+
+
+
+---
+
+🚀 Prompt 7: Task Planner with Notifications, Status Tracking & Local Storage Hybrid
+
+Build an Android app that manages tasks with deadlines, status tracking, and reminders.
+
+Activities:
+
+Add Task (Title, Description, Deadline via DatePicker)
+
+Task List (Pending / Completed filter)
+
+Task Details
+
+Settings
+
+
+Database Schema:
+
+Tasks → id, title, description, deadline, status (Pending/Done)
+
+
+Advanced Features:
+
+Use:
+
+SQLite → store tasks
+
+SharedPreferences → store user settings (e.g., reminder ON/OFF)
+
+
+Filter tasks:
+
+Today / Upcoming / Completed
+
+
+
+Calendar + Logic:
+
+Highlight overdue tasks
+
+Prevent past deadline selection
+
+
+Extra Complexity:
+
+Add AlarmManager / Notification
+
+Update task status dynamically
+
+Delete & Update functionality (FULL CRUD)
+
+
+
+---
+
+🧠 Final Truth (important)
+
+If you can confidently implement:
+
+SQLite (with constraints + joins)
+
+Multi-activity navigation
+
+Spinners + ListView/TableLayout
+
+DatePicker/TimePicker
+
+Validation + Toasts
+
+CRUD + Search
+
+
+👉 You can handle almost ANY Android lab question thrown at you.
+
+
+---
+
+If you want, I can now:
+
+Give you a universal template (code skeleton) that works for ANY of these questions
+
+Or simulate a real exam question + perfect answer
+
+
+Just tell me 👍
+
+Develop an Android application that integrates multiple UI components and database functionality in a single application. The user should be able to book movie tickets using a Spinner to select movie category (such as Action, Comedy, Drama, Thriller, etc.), a Date Picker to choose the movie date with restriction to only valid future dates up to 7 days in advance, and a Time Picker to select the movie schedule with constraints allowing only valid show timings between 9:00 AM and 11:00 PM. The screen should also include Radio Buttons to select ticket type (Regular or VIP), CheckBoxes to choose additional services (Snacks, Parking, 3D Glasses), and a Toggle Button to switch between Online and Offline booking mode.
+
+When the user clicks the Submit button, all booking details should be stored in a SQLite database table named “Bookings,” followed by displaying a Toast message confirming successful booking and navigating to a Booking Summary Screen using an Intent. The Booking Summary Screen should display all selected booking details and include a Popup Menu with functional options such as Edit Booking, Cancel Booking, and Share Booking. The Edit Booking option should navigate back to the Booking Screen with previously filled data using Intent extras, allowing the user to modify details and update the existing record in the database. The Cancel Booking option should delete the selected booking from the database, display a confirmation Toast message, and return to the Booking Screen. The Share Booking option should display booking details using a Toast message.
+
+Additionally, the application should include a “View Bookings” button on the Booking Screen that navigates to a Booking List Screen using an Intent. This screen should retrieve all stored bookings from the SQLite database and display them using a ListView. A long press on any booking item should open a Context Menu with options to Update (which opens the Booking Screen with pre-filled data for editing) and Delete (which removes the booking from the database and refreshes the ListView). Proper Back Button navigation must be implemented such that pressing back from the Summary Screen or Booking List Screen returns to the Booking Screen, and pressing back from the Booking Screen exits the application.
